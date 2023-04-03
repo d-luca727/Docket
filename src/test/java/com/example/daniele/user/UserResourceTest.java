@@ -47,7 +47,7 @@ class UserResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void createUnauthorized() {
     given()
       .body("{\"name\":\"test-unauthorized\",\"password\":\"test\",\"roles\":[\"user\"]}")
@@ -146,7 +146,7 @@ class UserResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "admin", roles = "com/example/daniele/user")
+  @TestSecurity(user = "admin", roles = "user")
   void getCurrentUser() {
     given()
       .when().get("/api/v1/users/self")
@@ -156,7 +156,7 @@ class UserResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "admin", roles = "com/example/daniele/user")
+  @TestSecurity(user = "admin", roles = "user")
   void changePassword() {
     given()
       .body("{\"currentPassword\": \"quarkus\", \"newPassword\": \"changed\"}")
@@ -170,7 +170,7 @@ class UserResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "admin", roles = "com/example/daniele/user")
+  @TestSecurity(user = "admin", roles = "user")
   void changePasswordDoesntMatch() {
     given()
       .body("{\"currentPassword\": \"wrong\", \"newPassword\": \"changed\"}")

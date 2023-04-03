@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.nullValue;
 class ProjectResourceTest {
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void list() {
     given()
       .when().get("/api/v1/projects")
@@ -36,7 +36,7 @@ class ProjectResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void create() {
     given()
       .body("{\"name\":\"project-create\"}")
@@ -51,7 +51,7 @@ class ProjectResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void createDuplicate() {
     given()
       .body("{\"name\":\"create-existent\"}")
@@ -66,7 +66,7 @@ class ProjectResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void update() {
     var toUpdate = given().body("{\"name\":\"to-update\"}").contentType(ContentType.JSON)
       .post("/api/v1/projects").as(Project.class);
@@ -84,7 +84,7 @@ class ProjectResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void updateNotFound() {
     given()
       .body("{\"name\":\"to-update\"}")
@@ -95,7 +95,7 @@ class ProjectResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "admin", roles = "com/example/daniele/user")
+  @TestSecurity(user = "admin", roles = "user")
   void updateUnauthorized() {
     given()
       .body("{\"name\":\"to-update\"}")
@@ -106,7 +106,7 @@ class ProjectResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void delete() {
     var toDelete = given().body("{\"name\":\"to-delete\"}").contentType(ContentType.JSON)
       .post("/api/v1/projects").as(Project.class);

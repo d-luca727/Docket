@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.nullValue;
 class TaskResourceTest {
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void list() {
     given()
       .body("{\"title\":\"to-be-listed\"}")
@@ -40,14 +40,14 @@ class TaskResourceTest {
             hasEntry("title", "to-be-listed")
           ),
           everyItem(
-            hasEntry(is("com/example/daniele/user"), (Matcher)hasEntry("name", "com/example/daniele/user"))
+            hasEntry(is("user"), (Matcher)hasEntry("name", "user"))
           )
         )
       );
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void create() {
     given()
       .body("{\"title\":\"task-create\"}")
@@ -62,7 +62,7 @@ class TaskResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void update() {
     var toUpdate = given()
       .body("{\"title\":\"to-update\"}")
@@ -82,7 +82,7 @@ class TaskResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void updateNotFound() {
     given()
       .body("{\"title\":\"updated\"}")
@@ -93,7 +93,7 @@ class TaskResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void updateForbidden() {
     final User admin = User.<User>findById(0L).await().indefinitely();
     Task adminTask = new Task();
@@ -109,7 +109,7 @@ class TaskResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void delete() {
     var toDelete = given()
       .body("{\"title\":\"to-delete\"}")
@@ -123,7 +123,7 @@ class TaskResourceTest {
   }
 
   @Test
-  @TestSecurity(user = "com/example/daniele/user", roles = "com/example/daniele/user")
+  @TestSecurity(user = "user", roles = "user")
   void setComplete() {
     var toSetComplete = given()
       .body("{\"title\":\"to-set-complete\"}")
